@@ -18,13 +18,13 @@
     <tbody>
       <tr v-for="asset in assets" :key="asset.id" class="border-b border-gray-200 hover:bg-orange-100 hover:bg-gray-600 ">
         <td>
-          <img :src="`https://static.coincap.io/assets/icons/${asset.symbol.toLowerCase()}@2x.png`" :alt="asset.name" >
+          <img class="w-8 h-8"  :src="`https://static.coincap.io/assets/icons/${asset.symbol.toLowerCase()}@2x.png`" :alt="asset.name" >
         </td>
         <td>#{{asset.rank}}</td>
         <td>{{asset.name}}</td>
-        <td>{{asset.priceUsd}}</td>
-        <td>{{asset.marketCapUsd}}</td>
-        <td>{{asset.changePercent24Hr}}</td>
+        <td>{{asset.priceUsd | dollar}}</td>
+        <td>{{asset.marketCapUsd | dollar}}</td>
+        <td :class="asset.changePercent24Hr.includes('-')? 'text-red-600':'text-green-600'">{{asset.changePercent24Hr | percent}}</td>
         <td class="hidden sm:block"></td>
       </tr>
     </tbody>
