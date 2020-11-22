@@ -1,12 +1,28 @@
 <template>
-  <div id="app">
-    <div id="nav">
+  <main>
+    <vue-header/>
+    <router-view class="container flex justify-center px-5 py-10 sm:px-20"/>
+
+    <!-- <div id="nav" class="bg-blue-400 shadow">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
-    <router-view/>
-  </div>
+    <router-view/> -->
+  </main>
 </template>
+
+<script>
+
+import VueHeader from "@/components/VueHeader.vue"
+
+export default {
+  name:"App",
+  components:{
+    VueHeader,
+  }
+  
+}
+</script>
 
 <style>
 #app {

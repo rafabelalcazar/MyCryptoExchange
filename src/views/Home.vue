@@ -1,18 +1,25 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <vue-assets-table :assets="assets"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import VueAssetsTable from "@/components/VueAssetsTable.vue";
+import api from '@/api';
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    HelloWorld
+    VueAssetsTable,
+  },
+  data(){
+    return{
+      assets: []
+    }
+  },
+  created(){
+    api.getAssets().then(assets=>this.assets=assets)
   }
-}
+};
 </script>

@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Eventos from '../views/Eventos.vue'
+import Error from '../views/Error.vue'
+// import Eventos from '../views/Eventos.vue'
 
 Vue.use(VueRouter)
 
@@ -20,13 +21,19 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path:'/eventos',
-    name:'Eventos',
-    component: Eventos
-  }
+    path: '*',
+    name: 'Error',
+    component: Error
+  },
+  // {
+  //   path:'/eventos',
+  //   name:'Eventos',
+  //   component: Error
+  // }
 ]
 
 const router = new VueRouter({
+  mode:'history',
   routes
 })
 
