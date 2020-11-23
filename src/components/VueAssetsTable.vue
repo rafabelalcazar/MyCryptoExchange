@@ -47,7 +47,11 @@
         >
           {{ asset.changePercent24Hr | percent }}
         </td>
-        <td class="hidden sm:block"></td>
+        <td class="hidden sm:block">
+          <vue-button @click="goToCoin(asset.id)" >
+            <span>Detalle</span>
+          </vue-button>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -55,6 +59,8 @@
 </template>
 
 <script>
+import VueButton from '@/components/VueButton.vue'
+// import VueButton from './VueButton.vue';
 export default {
   name: "VueAssetsTable",
   props: {
@@ -63,6 +69,14 @@ export default {
       default: () => [],
     },
   },
+  components:{
+    VueButton
+  },
+  methods:{
+    goToCoin(id){
+      this.$router.push({name:'coin-detail',params:{id}})
+    }
+  }
 };
 </script>
 
