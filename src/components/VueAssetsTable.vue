@@ -1,5 +1,5 @@
 <template>
-<!-- <div> -->
+  <!-- <div> -->
 
   <table>
     <thead>
@@ -16,20 +16,42 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="asset in assets" :key="asset.id" class="border-b border-gray-200 hover:bg-orange-100 hover:bg-gray-600 ">
+      <tr
+        v-for="asset in assets"
+        :key="asset.id"
+        class="border-b border-gray-200 hover:bg-orange-100 hover:bg-gray-600"
+      >
         <td>
-          <img class="w-8 h-8"  :src="`https://static.coincap.io/assets/icons/${asset.symbol.toLowerCase()}@2x.png`" :alt="asset.name" >
+          <img
+            class="w-8 h-8"
+            :src="`https://static.coincap.io/assets/icons/${asset.symbol.toLowerCase()}@2x.png`"
+            :alt="asset.name"
+          />
         </td>
-        <td>#{{asset.rank}}</td>
-        <td>{{asset.name}}</td>
-        <td>{{asset.priceUsd | dollar}}</td>
-        <td>{{asset.marketCapUsd | dollar}}</td>
-        <td :class="asset.changePercent24Hr.includes('-')? 'text-red-600':'text-green-600'">{{asset.changePercent24Hr | percent}}</td>
+        <td>#{{ asset.rank }}</td>
+        <td>
+          <router-link
+            class="hover:underline text-green-600"
+            :to="{ name: 'coin-detail', params: { id: asset.id } }"
+          >{{ asset.name }}</router-link>
+          <small class="ml-1 text-gray-500">{{ asset.symbol }}</small>
+        </td>
+        <td>{{ asset.priceUsd | dollar }}</td>
+        <td>{{ asset.marketCapUsd | dollar }}</td>
+        <td
+          :class="
+            asset.changePercent24Hr.includes('-')
+              ? 'text-red-600'
+              : 'text-green-600'
+          "
+        >
+          {{ asset.changePercent24Hr | percent }}
+        </td>
         <td class="hidden sm:block"></td>
       </tr>
     </tbody>
   </table>
-<!-- </div> -->
+  <!-- </div> -->
 </template>
 
 <script>
@@ -38,9 +60,9 @@ export default {
   props: {
     assets: {
       type: Array,
-      default: () => []
-    }
-  }
+      default: () => [],
+    },
+  },
 };
 </script>
 
